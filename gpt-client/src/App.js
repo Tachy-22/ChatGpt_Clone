@@ -14,7 +14,10 @@ function App(props) {
   const [currentModel, setCurrentModel] = useState("gpt-3.5-turbo");
   const [sideMenu, setSideMenu] = useState(false);
   const [command, setCommand] = useState([false, false, false, false, false]);
-
+  const isLocal = window.location.hostname === "localhost";
+  const apiUrl = isLocal
+    ? "http://localhost:5000"
+    : "https://chatgpt-clone-frontend-rs2w.onrender.com/";
   useEffect(() => {
     getEngines();
 
@@ -37,7 +40,8 @@ function App(props) {
     // const user = chatLogNew.map((message) => message.user);
     //console.log("U", user);
     //
-    const response = await fetch("http://localhost:5000/", {
+
+    const response = await fetch(`${apiUrl}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,12 +65,9 @@ function App(props) {
     setSideMenu(!sideMenu);
   };
   // fetch response to the api combining the chatlog array and sending it as a message to localhost:3000 as a post
-  const isLocal = window.location.hostname === "localhost";
-  const apiUrl = isLocal
-    ? "http://localhost:5000"
-    : "https://chatgpt-clone-frontend-rs2w.onrender.com/";
+
   async function getEngines() {
-    fetch(`${apiUrl} /models`).then((res) => {
+    fetch(`${apiUrl}/models`).then((res) => {
       res.json().then((data) => {
         console.log("models", data.models);
         setModels(data.models);
