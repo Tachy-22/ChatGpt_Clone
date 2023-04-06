@@ -61,8 +61,12 @@ function App(props) {
     setSideMenu(!sideMenu);
   };
   // fetch response to the api combining the chatlog array and sending it as a message to localhost:3000 as a post
+  const isLocal = window.location.hostname === "localhost";
+  const apiUrl = isLocal
+    ? "http://localhost:5000"
+    : "https://chatgpt-clone-frontend-rs2w.onrender.com/";
   async function getEngines() {
-    fetch("http://localhost:5000/models").then((res) => {
+    fetch(`${apiUrl} /models`).then((res) => {
       res.json().then((data) => {
         console.log("models", data.models);
         setModels(data.models);
