@@ -34,7 +34,7 @@ function App(props) {
       .map((message) => [message.user, message.message])
       .join("\n");
     console.log("messages", messages);
-    const user = chatLogNew.map((message) => message.user);
+    // const user = chatLogNew.map((message) => message.user);
     //console.log("U", user);
     //
     const response = await fetch("http://localhost:5000/", {
