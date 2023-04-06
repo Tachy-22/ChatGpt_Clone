@@ -17,7 +17,7 @@ function App(props) {
   const isLocal = window.location.hostname === "localhost";
   const apiUrl = isLocal
     ? "http://localhost:5000"
-    : "https://chatgpt-clone-frontend-rs2w.onrender.com/";
+    : "https://chatgpt-clone-3.onrender.com/";
   useEffect(() => {
     getEngines();
 
