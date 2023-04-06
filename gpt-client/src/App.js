@@ -17,13 +17,14 @@ function App(props) {
   const isLocal = window.location.hostname === "localhost";
   const apiUrl = isLocal
     ? "http://localhost:5000"
-    : "https://chatgpt-clone-3.onrender.com/";
+    : "https://chatgpt-clone-3.onrender.com";
+
   useEffect(() => {
     getEngines();
 
     //setHome(home);
   }, []);
-
+  console.log(isLocal);
   async function handleSubmit(e) {
     setHome(false);
     e.preventDefault();
